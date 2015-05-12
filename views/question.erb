@@ -9,6 +9,17 @@
 
 <br>
 
+<form action="/questions/<%= @question.id %>/update" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="question_content">Enter a new name:</label>
+    <input id="question_content" required type="text" name="question_content">
+    <button class="btn btn-info" id="update_content" name="update_content">Update</button>
+  </div>
+</form>
+
+<br>
+
 <% unless @surveys == [] || @surveys == nil %>
 <h4>Add to Surveys:</h4>
 <form action="/questions/<%= @question.id %>" method="post">
@@ -23,3 +34,12 @@
   <button class="btn btn-info" type="submit" id="attach_surveys" name="attach_surveys">Add Questions to Survey</button>
 </form>
 <% end %>
+
+<br>
+
+<form action="/questions/<%= @question.id %>/delete" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="delete">
+    <button class="btn btn-danger" type="submit" id="delete_question" name="delete_question">Delete Question</button>
+  </div>
+</form>

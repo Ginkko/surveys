@@ -1,6 +1,6 @@
 <h1>List of Questions</h1>
 
-<% if @questions.any? %>
+<% unless @questions == [] || @questions == nil %>
 <ul>
   <% @questions.each do |question| %>
   <li><a id ="survey_<%= question.id %>" href="/questions/<%= question.id %>"><%= question.content %></a></li>

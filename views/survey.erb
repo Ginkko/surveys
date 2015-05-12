@@ -20,6 +20,8 @@
   </div>
 </form>
 
+<br>
+
 <% if @questions.any? %>
   <h4>Add new Questions:</h4>
   <form action="/surveys/<%= @survey.id %>" method="post">
@@ -34,7 +36,9 @@
     <button class="btn btn-info" type="submit" id="attach_questions" name="attach_questions">Add Questions to Survey</button>
   </form>
 <% end %>
+
 <br>
+
 <form action="/surveys/<%= @survey.id %>/delete" method="post">
   <div class="form-group">
     <input type="hidden" name="_method" value="delete">

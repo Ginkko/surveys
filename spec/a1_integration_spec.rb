@@ -78,3 +78,23 @@ describe 'The path to alter surveys', type: :feature do
     expect(page).to have_content 'List of Surveys'
   end
 end
+
+describe 'The path to alter questions', type: :feature do
+  before do
+    question = Question.create(content: 'Taco Time?')
+    visit '/questions'
+    click_link question.content
+  end
+
+  it 'will let the user update the question' do
+    fill_in 'question_content', with: 'Dorito Time?'
+    click_button 'update_content'
+    expect(page).to have_content 'Dorito Time?'
+  end
+
+  it 'will let the user delete the question' do
+    click_button 'delete_question'
+    expect(page).to_not have_content 'Taco Time?'
+    expect(page).to have_content 'List of Questions'
+  end
+end
