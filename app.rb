@@ -82,3 +82,9 @@ patch '/questions/:id' do
   @surveys_question = @question.survey
   erb :question
 end
+
+delete '/surveys/:id/delete' do
+  Survey.find(params.fetch('id').to_i).delete
+  @surveys = Survey.all
+  erb :surveys
+end

@@ -65,12 +65,16 @@ describe 'The path to alter surveys', type: :feature do
     visit '/surveys'
     click_link survey.name
   end
+
   it 'will let the user update the survey' do
     fill_in 'survey_name', with: 'Dorito Time'
     click_button 'update_name'
     expect(page).to have_content 'Dorito Time'
   end
-  it 'will let the user delete the survey' do
 
+  it 'will let the user delete the survey' do
+    click_button 'delete_survey'
+    expect(page).to_not have_content 'Taco Time'
+    expect(page).to have_content 'List of Surveys'
   end
 end

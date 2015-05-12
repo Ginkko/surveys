@@ -34,3 +34,10 @@
     <button class="btn btn-info" type="submit" id="attach_questions" name="attach_questions">Add Questions to Survey</button>
   </form>
 <% end %>
+<br>
+<form action="/surveys/<%= @survey.id %>/delete" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="delete">
+    <button class="btn btn-danger" type="submit" id="delete_survey" name="delete_survey">Delete Survey</button>
+  </div>
+</form>
