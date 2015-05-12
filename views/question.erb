@@ -3,7 +3,9 @@
 <% unless @surveys == [] || @surveys == nil || @surveys_question == nil%>
 <h4>Surveys:</h4>
 <ul>
-  <li><a id ="survey_<%=@surveys_question.id %>" href="/surveys/<%= @surveys_question.id %>"><%= @surveys_question.name %></a></li>
+  <% @surveys_question.each do |survey| %>
+  <li><a id ="survey_<%= survey.id %>" href="/surveys/<%= survey.id %>"><%= survey.name %></a></li>
+  <% end %>
 </ul>
 <% end %>
 

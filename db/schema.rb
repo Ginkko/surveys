@@ -17,11 +17,10 @@ ActiveRecord::Schema.define(version: 20150512214515) do
   enable_extension "plpgsql"
 
   create_table "questions", force: :cascade do |t|
-    t.string  "content"
-    t.integer "survey_id"
+    t.string "content"
   end
 
-  create_table "questions_surveys", force: :cascade do |t|
+  create_table "questions_surveys", id: false, force: :cascade do |t|
     t.integer "question_id"
     t.integer "survey_id"
   end

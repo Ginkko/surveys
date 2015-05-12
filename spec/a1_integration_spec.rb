@@ -53,9 +53,9 @@ describe 'The path to attaching questions to surveys', type: :feature do
     check(question1.id)
     check(question2.id)
     click_button('attach_questions')
+    expect(page).to have_content('Attached Questions:')
     expect(page).to have_content('Soft or hardshell?')
     expect(page).to have_content('Veggie, Beef, or Chicken?')
-    expect(page).to have_content('Questions:')
   end
 end
 

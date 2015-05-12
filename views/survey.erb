@@ -1,7 +1,7 @@
 <h1>Survey: <%= @survey.name %> </h1>
 
 <% if @questions_survey.any? %>
-<h4>Questions:</h4>
+<h4>Attached Questions:</h4>
 <ul>
   <% @questions_survey.each do |question| %>
   <li><a id ="question_<%=question.id %>" href="/questions/<%= question.id %>"><%= question.content %></a></li>
