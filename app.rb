@@ -1,11 +1,11 @@
-require("sinatra")
-require("sinatra/reloader")
+require('sinatra')
+require('sinatra/reloader')
 require('sinatra/activerecord')
-also_reload("lib/**/*.rb")
-require "pg"
-require "pry"
-require "./lib/survey"
-require "./lib/question"
+also_reload('lib/**/*.rb')
+require 'pg'
+require 'pry'
+require './lib/survey'
+require './lib/question'
 
 get '/' do
   erb :index
@@ -34,7 +34,24 @@ post '/questions' do
 end
 
 get '/surveys/:id' do
-  @survey = Survey.find(params.fetch('id'))
-  @questions = @survey.questions
+  @survey = Survey.find(params.fetch('id').to_i)
+  @questions = Question.all
+  @questions_survey = @survey.questions
+  erb :survey
+end
+
+patch '/surveys/:id' do
+  @survey = Survey.find(params.fetch('id').to_i)
+  selected_questions = []
+  if(params.has_key?('question_ids'))
+    params.fetch('question_ids').each do |question_id|
+      selected_questions.push(Question.find(question_id.to_i))
+    end
+    selected_questions.each do |question|
+      question.update({survey_id: params.fetch('id')})
+    end
+  end
+  @questions = Question.all
+  @questions_survey = @survey.questions
   erb :survey
 end

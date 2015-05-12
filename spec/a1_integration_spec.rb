@@ -1,6 +1,6 @@
+require('spec_helper')
 require('capybara/rspec')
 require('./app')
-require('spec_helper')
 
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
@@ -27,9 +27,28 @@ end
 
 describe 'The path to get to a survey', type: :feature do
   it 'will let the user visit a specific survey.' do
-    survey= Survey.create(name: 'Taco Time')
+    survey = Survey.create(name: 'Taco Time')
     visit '/surveys'
     click_link survey.name
     expect(page).to have_content('Details for: Taco Time')
+  end
+end
+
+describe 'The path to attaching questions to surveys', type: :feature do
+  before do
+
+  end
+  it 'will let the user select multiple questions from checkboxes and add them to a survey' do
+    survey = Survey.create(name: 'Taco Time')
+    question1 = Question.create(content: 'Soft or hardshell?')
+    question2 = Question.create(content: 'Veggie, Beef, or Chicken?')
+    visit '/surveys'
+    click_link survey.name
+    check(question1.id)
+    check(question2.id)
+    click_button('attach_questions')
+    expect(page).to have_content('Soft or hardshell?')
+    expect(page).to have_content('Veggie, Beef, or Chicken?')
+    expect(page).to have_content('Questions:')
   end
 end

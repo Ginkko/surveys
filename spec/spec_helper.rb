@@ -1,7 +1,7 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'rspec'
 require 'sinatra/activerecord'
+require 'rspec'
 require 'survey'
 require 'question'
 require 'pry'
