@@ -1,0 +1,11 @@
+<h1>Congrats!</h1>
+
+<h4>you've completed a survey. Thanks!</h4>
+
+<% if @answers.any? %>
+<ul>
+  <% @answers.each do |answer| %>
+  <li><%= answer.answer %></li>
+  <% end %>
+</ul>
+<% end %>

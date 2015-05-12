@@ -1,0 +1,9 @@
+<h1>Take a Survey</h1>
+
+<% if @surveys.any? %>
+<ul>
+  <% @surveys.each do |survey| %>
+  <li><a id ="survey_<%=survey.id %>" href="/take-survey/<%= survey.id %>"><%= survey.name %></a></li>
+  <% end %>
+</ul>
+<% end %>

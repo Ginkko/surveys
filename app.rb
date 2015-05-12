@@ -6,6 +6,7 @@ require 'pg'
 require 'pry'
 require './lib/survey'
 require './lib/question'
+require './lib/answer'
 
 get '/' do
   erb :index
@@ -92,4 +93,25 @@ delete '/questions/:id/delete' do
   Question.find(params.fetch('id').to_i).delete
   @questions = Question.all
   erb :questions
+end
+
+get '/take-survey' do
+  @surveys = Survey.all
+  erb :take_survey
+end
+
+get '/take-survey/:id' do
+  @survey = Survey.find(params.fetch('id'))
+  @questions = @survey.questions
+  erb :answers
+end
+
+post '/take-survey/:id/finished' do
+  survey = Survey.find(params.fetch('id'))
+  questions = survey.questions
+  questions.each do |question|
+    Answer.create({answer: params.fetch(question.id.to_s), question_id: question.id})
+  end
+  @answers = Answer.all
+  erb :complete_survey
 end

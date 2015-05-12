@@ -1,0 +1,13 @@
+<h1><%= @survey.name %></h1>
+
+
+
+<% if @questions.any? %>
+<form id="form_id" action="/take-survey/<%=@survey.id%>/finished" method="post">
+  <% @questions.each do |question| %>
+    <h4><%= question.content %></h4>
+    <input type="text" name="<%=question.id%>" id="<%=question.id%>">
+  <% end %>
+  <button type="submit" class="btn btn-success">Submit Answers</button>
+</form>
+<% end %>
