@@ -11,6 +11,15 @@
 
 <br>
 
+<form action="/surveys/<%= @survey.id %>/update" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="survey_name">Enter a new name:</label>
+    <input required type="text" name="survey_name">
+    <button class="btn btn-info" id="update_name" name="update_name">Update</button>
+  </div>
+</form>
+
 <% if @questions.any? %>
   <h4>Add new Questions:</h4>
   <form action="/surveys/<%= @survey.id %>" method="post">

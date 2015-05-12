@@ -63,6 +63,14 @@ patch '/surveys/:id' do
   erb :survey
 end
 
+patch '/surveys/:id/update' do
+  @survey = Survey.find(params.fetch('id').to_i)
+  @questions = Question.all
+  @questions_survey = @survey.questions
+  @survey.update({name: params.fetch('survey_name')})
+  erb :survey
+end
+
 patch '/questions/:id' do
   @question = Question.find(params.fetch('id').to_i)
   if(params.has_key?('survey_ids'))
@@ -71,6 +79,6 @@ patch '/questions/:id' do
     end
   end
   @surveys = Survey.all
-  @surveys_survey = @survey.surveys
-  erb :survey
+  @surveys_question = @question.survey
+  erb :question
 end

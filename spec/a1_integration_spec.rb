@@ -58,3 +58,19 @@ describe 'The path to attaching questions to surveys', type: :feature do
     expect(page).to have_content('Questions:')
   end
 end
+
+describe 'The path to alter surveys', type: :feature do
+  before do
+    survey = Survey.create(name: 'Taco Time')
+    visit '/surveys'
+    click_link survey.name
+  end
+  it 'will let the user update the survey' do
+    fill_in 'survey_name', with: 'Dorito Time'
+    click_button 'update_name'
+    expect(page).to have_content 'Dorito Time'
+  end
+  it 'will let the user delete the survey' do
+
+  end
+end

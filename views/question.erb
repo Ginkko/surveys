@@ -1,17 +1,15 @@
 <h1>Question: <%= @question.content %> </h1>
 
-<% if @surveys_question != nil %>
+<% unless @surveys == [] || @surveys == nil || @surveys_question == nil%>
 <h4>Surveys:</h4>
 <ul>
-  <% @surveys_question.each do |survey| %>
-  <li><a id ="survey_<%=survey.id %>" href="/surveys/<%= survey.id %>"><%= survey.name %></a></li>
-  <% end %>
+  <li><a id ="survey_<%=@surveys_question.id %>" href="/surveys/<%= @surveys_question.id %>"><%= @surveys_question.name %></a></li>
 </ul>
 <% end %>
 
 <br>
 
-<% if @surveys != nil %>
+<% unless @surveys == [] || @surveys == nil %>
 <h4>Add to Surveys:</h4>
 <form action="/questions/<%= @question.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
