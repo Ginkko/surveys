@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
-  database: employee_tracker_development
+  database: survey_development
 
 test:
-  adapater: postgresql
-  database: employee_tracker_test
+  adapter: postgresql
+  database: survey_test
