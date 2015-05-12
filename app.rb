@@ -21,3 +21,14 @@ post '/surveys' do
   Survey.create(name: params.fetch('survey_name'))
   erb :surveys
 end
+
+get '/questions' do
+  @questions = Question.all
+  erb :questions
+end
+
+post '/questions' do
+  @questions = Question.all
+  Question.create(content: params.fetch('question_name'))
+  erb :questions
+end
