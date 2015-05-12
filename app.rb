@@ -40,6 +40,13 @@ get '/surveys/:id' do
   erb :survey
 end
 
+get '/questions/:id' do
+  @question = Question.find(params.fetch('id').to_i)
+  @surveys = Survey.all
+  @surveys_question = @question.survey
+  erb :question
+end
+
 patch '/surveys/:id' do
   @survey = Survey.find(params.fetch('id').to_i)
   selected_questions = []
@@ -53,5 +60,17 @@ patch '/surveys/:id' do
   end
   @questions = Question.all
   @questions_survey = @survey.questions
+  erb :survey
+end
+
+patch '/questions/:id' do
+  @question = Question.find(params.fetch('id').to_i)
+  if(params.has_key?('survey_ids'))
+    params.fetch('survey_ids').each do |survey_id|
+      @question.update({survey_id: survey_id.to_i})
+    end
+  end
+  @surveys = Survey.all
+  @surveys_survey = @survey.surveys
   erb :survey
 end

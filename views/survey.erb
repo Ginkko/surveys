@@ -1,10 +1,10 @@
-<h1>Details for: <%= @survey.name %> </h1>
+<h1>Survey: <%= @survey.name %> </h1>
 
 <% if @questions_survey.any? %>
 <h4>Questions:</h4>
 <ul>
   <% @questions_survey.each do |question| %>
-  <li><a id ="survey_<%=question.id %>" href="/questions/<%= question.id %>"><%= question.content %></a></li>
+  <li><a id ="question_<%=question.id %>" href="/questions/<%= question.id %>"><%= question.content %></a></li>
   <% end %>
 </ul>
 <% end %>
@@ -18,7 +18,7 @@
     <% @questions.each do |question| %>
       <div class="checkbox">
         <label>
-          <input type="checkbox" id="<%= question.id %>" name="question_ids[]" value="<%= question.id %>"><%= question.content() %>
+          <input type="checkbox" id="<%= question.id %>" name="question_ids[]" value="<%= question.id %>"><%= question.content %>
         </label>
       </div>
     <% end %>

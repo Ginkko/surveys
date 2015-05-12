@@ -30,14 +30,20 @@ describe 'The path to get to a survey', type: :feature do
     survey = Survey.create(name: 'Taco Time')
     visit '/surveys'
     click_link survey.name
-    expect(page).to have_content('Details for: Taco Time')
+    expect(page).to have_content('Survey: Taco Time')
+  end
+end
+
+describe 'The path to get to a question', type: :feature do
+  it 'will let the user visit a specific question.' do
+    question = Question.create(content: 'What is your quest?')
+    visit '/questions'
+    click_link question.content
+    expect(page).to have_content('Question: What is your quest?')
   end
 end
 
 describe 'The path to attaching questions to surveys', type: :feature do
-  before do
-
-  end
   it 'will let the user select multiple questions from checkboxes and add them to a survey' do
     survey = Survey.create(name: 'Taco Time')
     question1 = Question.create(content: 'Soft or hardshell?')

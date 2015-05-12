@@ -1,0 +1,27 @@
+<h1>Question: <%= @question.content %> </h1>
+
+<% if @surveys_question != nil %>
+<h4>Surveys:</h4>
+<ul>
+  <% @surveys_question.each do |survey| %>
+  <li><a id ="survey_<%=survey.id %>" href="/surveys/<%= survey.id %>"><%= survey.name %></a></li>
+  <% end %>
+</ul>
+<% end %>
+
+<br>
+
+<% if @surveys != nil %>
+<h4>Add to Surveys:</h4>
+<form action="/questions/<%= @question.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <% @surveys.each do |survey| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="<%= survey.id %>" name="survey_ids[]" value="<%= survey.id %>"><%= survey.name %>
+    </label>
+  </div>
+  <% end %>
+  <button class="btn btn-info" type="submit" id="attach_surveys" name="attach_surveys">Add Questions to Survey</button>
+</form>
+<% end %>
