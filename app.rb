@@ -43,7 +43,7 @@ end
 get '/questions/:id' do
   @question = Question.find(params.fetch('id').to_i)
   @surveys = Survey.all
-  @surveys_question = @question.survey
+  @surveys_question = @question.surveys
   erb :question
 end
 
@@ -86,7 +86,7 @@ end
 patch '/questions/:id/update' do
   @question = Question.find(params.fetch('id').to_i)
   @surveys = Survey.all
-  @surveys_question = @question.survey
+  @surveys_question = @question.surveys
   @question.update({content: params.fetch('question_content')})
   erb :question
 end
