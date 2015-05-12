@@ -1,0 +1,18 @@
+<h1>List of Surveys</h1>
+
+<% if @surveys.any? %>
+  <ul>
+    <% @surveys.each do |survey| %>
+      <li><a id ="survey_<%=survey.id %>" href="/surveys/<%= survey.id %>"><%= survey.name %></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="form-group">
+  <form action="/surveys" method="post">
+    <label for="survey_name">Enter a new Survey Name:</label>
+    <input required type="text" name="survey_name" id="survey_name" class="form-control">
+    <br>
+    <button name="submit_survey" id="submit_survey" class="btn btn-info" type="submit">Add Survey</button>
+  </form>
+</div>

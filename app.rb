@@ -7,6 +7,17 @@ require "pry"
 require "./lib/survey"
 require "./lib/question"
 
-get('/') do
-  erb(:index)
+get '/' do
+  erb :index
+end
+
+get '/surveys' do
+  @surveys = Survey.all
+  erb :surveys
+end
+
+post '/surveys' do
+  @surveys = Survey.all
+  Survey.create(name: params.fetch('survey_name'))
+  erb :surveys
 end
