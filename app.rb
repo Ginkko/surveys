@@ -32,3 +32,9 @@ post '/questions' do
   Question.create(content: params.fetch('question_name'))
   erb :questions
 end
+
+get '/surveys/:id' do
+  @survey = Survey.find(params.fetch('id'))
+  @questions = @survey.questions
+  erb :survey
+end

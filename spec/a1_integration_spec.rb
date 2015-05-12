@@ -24,3 +24,12 @@ describe 'The path to add questions', :type => :feature do
     expect(page).to have_content('Do you like dags?')
   end
 end
+
+describe 'The path to get to a survey', type: :feature do
+  it 'will let the user visit a specific survey.' do
+    survey= Survey.create(name: 'Taco Time')
+    visit '/surveys'
+    click_link survey.name
+    expect(page).to have_content('Details for: Taco Time')
+  end
+end
